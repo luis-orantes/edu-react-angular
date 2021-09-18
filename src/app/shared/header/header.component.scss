@@ -1,0 +1,32 @@
+@import 'bwm-colors.scss';
+
+.navbar {
+  .navbar-brand {
+    font-size: 30px;
+    margin-right: 30px;
+    letter-spacing: 1px;
+    color: $red-dark;
+    font-weight: bold;
+  }
+
+  .bwm-search {
+    height: 50px;
+    width: 300px;
+  }
+
+  .nav-item {
+    font-size: 16px;
+  }
+
+  .bwm-btn-main {
+    color: $red-dark;
+    border-color: $red-dark;
+
+    &:hover, &:active, &:focus {
+      color: white;
+      background-color: $red-dark;
+      border-color: $red-dark;
+      box-shadow: none;
+    }
+  }
+}
