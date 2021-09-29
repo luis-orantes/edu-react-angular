@@ -15,6 +15,7 @@ export class RentalListingComponent implements OnInit {
   ) {}
 
   rentals: Rental[] = [];
+  parentData = 10;
 
   ngOnInit() {
     this.rentalService.getRentals().subscribe((rentals: Rental[]) => {

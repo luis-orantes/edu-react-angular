@@ -9,6 +9,7 @@ export class RentalCardComponent {
 
 
   @Input() rental;
+  @Input('childData') childData;
 
 
 
