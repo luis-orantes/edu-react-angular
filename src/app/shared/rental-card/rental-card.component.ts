@@ -13,7 +13,7 @@ export class RentalCardComponent {
   @Output() childDataChange = new EventEmitter<number>();
 
 
-  changeData () {
+  changeData() {
     this.childData = 100;
     this.childDataChange.emit(this.childData);
   }
