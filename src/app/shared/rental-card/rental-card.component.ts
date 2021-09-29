@@ -12,6 +12,11 @@ export class RentalCardComponent {
   @Input('childData') childData;
 
 
+  changeData () {
+    this.childData = 100;
+  }
+
+
 
 
 }
