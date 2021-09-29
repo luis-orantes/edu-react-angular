@@ -23,10 +23,6 @@ export class RentalListingComponent implements OnInit {
     });
   }
 
-  changeParentData(value: number) {
-    this.parentData = value;
-  }
-
 
 
 

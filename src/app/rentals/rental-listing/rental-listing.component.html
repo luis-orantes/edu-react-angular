@@ -7,8 +7,7 @@
       Parent: {{parentData}}
       <bwm-rental-card
         [rental]=rental
-        [childData]=parentData
-        (childDataChange)="changeParentData($event)"
+        [(childData)]=parentData
       >
       </bwm-rental-card>
     </div>
