@@ -11,7 +11,7 @@ rentals: Rental[] = [
     title: 'Central Apartment',
     city: 'New York',
     street: 'Time Square',
-    category: 'Apartment',
+    category: 'apartment',
     image: 'http://via.placeholder.com/320x250',
     numOfRooms: 3,
     description: 'Very nice apartment',
