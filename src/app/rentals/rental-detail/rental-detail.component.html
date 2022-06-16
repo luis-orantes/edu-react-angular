@@ -1,1 +1,5 @@
-<h1>I am Details Component! {{rentalId}}</h1>
+<div *ngIf="rental && rental._id">
+  <h1>{{rental._id}}</h1>
+  <h2>{{rental.title}}</h2>
+  <h2>{{rental.description}}</h2>
+</div>
