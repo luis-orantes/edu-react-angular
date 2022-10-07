@@ -11,6 +11,8 @@ import { RentalService } from './shared/rental.service';
 
 import { FirstUpperLetterPipe } from '../shared/pipes/first-upper-letter.pipe';
 
+import { BwmHighLightDirective } from '../shared/directives/bwm-high-light.directive';
+
 const routes: Routes = [
   {path: 'rentals',
     component: RentalComponent,
@@ -28,6 +30,7 @@ const routes: Routes = [
     RentalDetailComponent,
     RentalCardComponent,
     FirstUpperLetterPipe,
+    BwmHighLightDirective,
   ],
   providers: [
     RentalService,
