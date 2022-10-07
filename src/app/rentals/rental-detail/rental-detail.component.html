@@ -23,7 +23,7 @@
             {{rental.shared ? 'Shared' : 'Whole'}} {{rental.category}}
           </h2>
           <!-- TODO: Display title -->
-          <h1 class="rental-title" bwmHighLight>{{rental.title}}</h1>
+          <h1 class="rental-title" [bwmHighLight]="'blue'">{{rental.title}}</h1>
           <!-- TODO: Display city -->
           <h2 class="rental-city">{{rental.city | firstUpperLetter}}</h2>
           <div class="rental-room-info">

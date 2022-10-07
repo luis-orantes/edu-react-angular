@@ -1,13 +1,16 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[bwmHighLight]'
 })
-export class BwmHighLightDirective {
+export class BwmHighLightDirective implements OnInit {
 
-  constructor(el: ElementRef)
-  {
-    el.nativeElement.style.backgroundColor = 'yellow';
+  @Input('bwmHighLight') bwmHighLight
+
+  constructor(private el: ElementRef) { }
+
+  ngOnInit(): void {
+    this.el.nativeElement.style.backgroundColor = this.bwmHighLight;
   }
 
 
