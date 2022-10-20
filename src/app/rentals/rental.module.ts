@@ -13,6 +13,7 @@ import { FirstUpperLetterPipe } from '../shared/pipes/first-upper-letter.pipe';
 
 import { BwmHighLightDirective } from '../shared/directives/bwm-high-light.directive';
 import { CustomNgIfDirective } from '../shared/directives/custom-ng_if.directive';
+import { CustomNgForDirective } from '../shared/directives/custom-ng_for.directive';
 
 const routes: Routes = [
   {path: 'rentals',
@@ -33,6 +34,7 @@ const routes: Routes = [
     FirstUpperLetterPipe,
     BwmHighLightDirective,
     CustomNgIfDirective,
+    CustomNgForDirective,
   ],
   providers: [
     RentalService,
