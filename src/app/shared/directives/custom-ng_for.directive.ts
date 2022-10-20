@@ -8,7 +8,7 @@ import { Directive, TemplateRef, ViewContainerRef, Input, OnChanges } from '@ang
 })
 export class CustomNgForDirective implements OnChanges {
 
-  @Input('bwmNgFor') bwmNgFor: Array<any>;
+  @Input('bwmNgForOf') bwmNgForOf: Array<any>;
 
 
   constructor(
@@ -18,8 +18,8 @@ export class CustomNgForDirective implements OnChanges {
 
 
   ngOnChanges(): void {
-    for(let item of this.bwmNgFor)
-      this.container.createEmbeddedView(this.template);
+    for(let item of this.bwmNgForOf)
+      this.container.createEmbeddedView(this.template, {$implicit: item});
   }
 
 

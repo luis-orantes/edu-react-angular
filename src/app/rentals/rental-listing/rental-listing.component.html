@@ -9,8 +9,8 @@
       >
       </bwm-rental-card>
     </div>
-    <div *bwmNgFor="[1,2,3]" class="col-md-3 col-xs-6">
-      Hello World
+    <div *bwmNgFor="let num of [1,2,3]" class="col-md-3 col-xs-6">
+      {{num}}
     </div>
   </div>
 </div>
