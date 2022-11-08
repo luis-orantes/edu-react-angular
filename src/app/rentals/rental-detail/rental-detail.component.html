@@ -18,23 +18,16 @@
     <div class="row">
       <div class="col-md-8">
         <div class="rental">
-          <!-- TODO: Display shared category -->
           <h2 class="rental-type type-{{rental.category}}">
             {{rental.shared ? 'Shared' : 'Whole'}} {{rental.category}}
           </h2>
-          <!-- TODO: Display title -->
           <h1 class="rental-title" [bwmHighLight]="'blue'">{{rental.title}}</h1>
-          <!-- TODO: Display city -->
           <h2 class="rental-city">{{rental.city | firstUpperLetter}}</h2>
           <div class="rental-room-info">
-            <!-- TODO: Display numOfRooms -->
             <span><i class="fa fa-building"></i>{{rental.numOfRooms}} bedrooms</span>
-              <!-- TODO: Display numOfRooms + 4 -->
             <span><i class="fa fa-user"></i>{{rental.numOfRooms + 4}} guests</span>
-            <!-- TODO: Display numOfRooms + 2 -->
             <span><i class="fa fa-bed"></i>{{rental.numOfRooms + 2}} beds</span>
           </div>
-          <!-- TODO: Display description -->
           <p class="rental-description">
             {{rental.description}}
           </p>
