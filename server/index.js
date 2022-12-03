@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const rentalRoutes = require('./routes/rentals');
-const { mongoUri } = require('./pass/mongo');
+const config = require('./config/dev');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 
-mongoose.connect(mongoUri, () => {
+mongoose.connect(config.DB_URI, () => {
     console.log('Connected to DB!');
 })
 

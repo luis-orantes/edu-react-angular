@@ -1,1 +1,0 @@
-exports.mongoUri = 'mongodb+srv://test:<password>@cluster0.7cbf9ex.mongodb.net/bwm?retryWrites=true&w=majority';
