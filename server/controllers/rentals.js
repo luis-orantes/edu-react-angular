@@ -1,10 +1,6 @@
 const Rental = require('../models/rental');
 
 
-function rentalsFind(rentalId) {
-  return rentals.findIndex(item => item._id === rentalId);
-}
-
 exports.getRentals = (req, res) => {
   Rental.find({}, (error, foundRentals) => {
     if(error) {
@@ -16,8 +12,13 @@ exports.getRentals = (req, res) => {
 
 exports.getRentalById = (req, res) => {
   const { rentalId } = req.params;
-  const rental = rentals.find(item => item._id === req.params.rentalId);
-  return res.json(rental);
+
+  Rental.findById(rentalId, (error, foundRental) => {
+    if(error) {
+      return res.status(422).send({errors: [{title: 'Rental Error!', message: 'Cannot retrieve rental data!'}]});
+    }
+    return res.json(foundRental);
+  })
 }
 
 exports.createRental = (req, res) => {
