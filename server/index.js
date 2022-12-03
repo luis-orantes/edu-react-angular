@@ -2,8 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+// routes
 const rentalRoutes = require('./routes/rentals');
 const config = require('./config/dev');
+
+// models
+const Rental = require('./models/rental');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
