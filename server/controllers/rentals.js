@@ -26,7 +26,7 @@ exports.createRental = (req, res) => {
 
   Rental.create(rentalData, (error, createdRental) => {
     if (error) {
-      return res.status(422).send({errors: [{title: 'Rental Error!', message: 'Cannot post rental data!'}]})
+      return new Rental().sendError(res, {status: 422, detail: 'Cannot post rental data!'});
     }
     res.json({
       message: `rental with id ${createdRental._id} was added!` 
