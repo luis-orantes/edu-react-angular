@@ -14,7 +14,7 @@ const rentalSchema = new Schema({
   createdAt: { type: Date, default: Date.now }
 })
 
-rentalSchema.methods.sendError = function(res, config) {
+rentalSchema.statics.sendError = function(res, config) {
   const { status, detail } = config;
   return res
     .status(status)
