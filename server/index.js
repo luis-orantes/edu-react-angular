@@ -8,7 +8,8 @@ const rentalRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
 
 // models
-const Rental = require('./models/rental');
+require('./models/rental');
+require('./models/users');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
