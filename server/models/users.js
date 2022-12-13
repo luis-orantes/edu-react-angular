@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
-  user: {
+  username: {
     type: String,
     minlenght: [4, 'User should be at least 4 chars long'],
     maxlenght: [32, 'User should be at most 32 chars long'],
