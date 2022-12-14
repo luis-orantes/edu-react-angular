@@ -1,6 +1,7 @@
 
-
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
@@ -24,6 +25,25 @@ const usersSchema = new Schema({
     minlenght: [4, 'Password should be at least 4 chars long'],
     maxlenght: [32, 'Password should be at most 32 chars long'],
   }
+});
+
+
+usersSchema.pre('save', function(next) {
+  const users = this;
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(users.password, salt, (err, hash) => {
+      users.password = hash;
+      next();
+    })
+  })
+
+  // using one function is not working, returns DB error
+  // bcrypt.hash(users.password, 10, salt, (err, hash) => {
+  //   users.password = hash;
+  //   next();
+  // })
+
 });
 
 
