@@ -2,7 +2,24 @@
 const users = require('../models/users');
 
 exports.login = (req, res) => {
-  return res.json({message: 'Login API working!'});
+  const { email, password } = req.body;
+
+  users.findOne({ email }, (error, userExisting) => {
+    if(error) {
+      return res.status(422).send({error: {title: 'Error in Login', detail: 'Internal DB error'}});
+    }
+    if(!userExisting) {
+      return res.status(422).send({error: {title: 'Error in Login', detail: 'Username not found'}});
+      return; // TODO> *** Use this line to avoid crashing the server when username already exists. The controller is invoking twice when this error occurs.
+    }
+
+    if(userExisting.passValidate(password)) {
+      // generate JWT
+      return res.json({token: 'X'});
+    } else {
+      return res.status(422).send({error: {title: 'Error in Login', detail: 'Invalid password'}}); 
+    }
+  })
 }
 
 
