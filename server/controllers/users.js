@@ -1,5 +1,9 @@
 
 const users = require('../models/users');
+const jwt = require('jsonwebtoken');
+
+const config = require('../config/dev');
+
 
 exports.login = (req, res) => {
   const { email, password } = req.body;
@@ -14,8 +18,11 @@ exports.login = (req, res) => {
     }
 
     if(userExisting.passValidate(password)) {
-      // generate JWT
-      return res.json({token: 'X'});
+      const token = jwt.sign({
+        sub: userExisting._id,
+        user: userExisting.username,
+      }, config.JWT_SECRET, {expiresIn: '20h'});
+      return res.json({ token });
     } else {
       return res.status(422).send({error: {title: 'Error in Login', detail: 'Invalid password'}}); 
     }
