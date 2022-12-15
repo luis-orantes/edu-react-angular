@@ -86,5 +86,9 @@ function userAuthNo(res) {
 
 
 function tokenParse(token) {
-  return jwt.verify(token.split(' ')[1], config.JWT_SECRET) || null;
+  try {
+    return jwt.verify(token.split(' ')[1], config.JWT_SECRET) || null;
+  } catch(err) {
+    return null;
+  }
 }
