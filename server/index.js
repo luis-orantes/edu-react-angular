@@ -29,7 +29,7 @@ app.use('/api/v1/rentals', rentalRoutes);
 app.use('/api/v1/users', usersRoutes);
 
 app.get('/api/v1/secret', userAuth, (req, res) => {
-    res.send({title: 'Auth', message: 'Secret message'});
+    res.send({title: 'Auth', message: `Secret message for ${res.locals.user.username}`});
 })
 
 app.listen(PORT, () => {

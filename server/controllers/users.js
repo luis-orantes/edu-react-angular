@@ -14,7 +14,6 @@ exports.login = (req, res) => {
     }
     if(!userExisting) {
       return res.status(422).send({error: {title: 'Error in Login', detail: 'Username not found'}});
-      return; // TODO> *** Use this line to avoid crashing the server when username already exists. The controller is invoking twice when this error occurs.
     }
 
     if(userExisting.passValidate(password)) {
@@ -63,7 +62,18 @@ exports.userAuth = (req, res, next) => {
       return userAuthNo(res);
     }
 
-    next();
+    users.findById(tokenDecoded.sub, (error, userExisting) => {
+      if(error) {
+        return res.status(422).send({error: {title: 'Error in registering', detail: 'Internal DB error'}});
+      }
+      if(userExisting) {
+        res.locals.user = userExisting;
+        next();
+      } else {
+        return res.status(401).send({title: 'Auth', message: 'Not authorized, valid token but user not found'});
+      }
+    })
+
   } else {
     return userAuthNo(res);
   }
