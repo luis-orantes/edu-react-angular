@@ -51,3 +51,30 @@ exports.register = (req, res) => {
     })
   })
 }
+
+
+exports.userAuth = (req, res, next) => {
+  const token = req.headers.auth;
+
+  if(token) {
+    const tokenDecoded = tokenParse(token);
+
+    if(!tokenDecoded) {
+      return userAuthNo(res);
+    }
+
+    next();
+  } else {
+    return userAuthNo(res);
+  }
+}
+
+
+function userAuthNo(res) {
+  return res.status(401).send({title: 'Auth', message: 'Not authorized, login first'});
+}
+
+
+function tokenParse(token) {
+  return jwt.verify(token.split(' ')[1], config.JWT_SECRET) || null;
+}
