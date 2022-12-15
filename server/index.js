@@ -22,20 +22,9 @@ mongoose.connect(config.DB_URI, () => {
 // Middleware
 app.use(bodyParser.json());
 
-const pru = (req, res, next) => {
-    console.log('hi');
-    const isError = false;
-    if(!isError) {
-        req.pru = 'mid prob';
-        return next();
-    }
-    return res.status(422).send('middle Error');
-};
-
 // Api Routes
-// app.use('/api/v1/rentals', pru, rentalRoutes);
 app.use('/api/v1/rentals', rentalRoutes);
-app.use('/api/v1/users', pru, usersRoutes);
+app.use('/api/v1/users', usersRoutes);
 
 app.listen(PORT, () => {
     console.log('listening on port: ' + PORT);

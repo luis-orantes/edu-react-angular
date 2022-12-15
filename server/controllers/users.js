@@ -8,8 +8,6 @@ const config = require('../config/dev');
 exports.login = (req, res) => {
   const { email, password } = req.body;
 
-  console.log('hi log: ', req.pru);
-
   users.findOne({ email }, (error, userExisting) => {
     if(error) {
       return res.status(422).send({error: {title: 'Error in Login', detail: 'Internal DB error'}});

@@ -2,7 +2,6 @@ const Rental = require('../models/rental');
 
 
 exports.getRentals = (req, res) => {
-  console.log('hi rent: ', req.pru);
   Rental.find({}, (error, foundRentals) => {
     if(error) {
       return Rental.sendError(res, {status: 422, detail: 'Cannot retrieve rental data!'});
