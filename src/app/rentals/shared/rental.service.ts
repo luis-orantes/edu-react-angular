@@ -10,11 +10,11 @@ export class RentalService {
   constructor(private http: HttpClient) {}
 
   getRentals(): Observable<Rental[]> {
-    return this.http.get<Rental[]>(`http://localhost:3001/api/v1/rentals`);
+    return this.http.get<Rental[]>(`http://localhost:4200/api/v1/rentals`);
   }
 
   getRentalById(rentalId: string): Observable<Rental> {
-    return this.http.get<Rental>(`http://localhost:3001/api/v1/rentals/${rentalId}`);
+    return this.http.get<Rental>(`http://localhost:4200/api/v1/rentals/${rentalId}`);
   }
 
 
