@@ -10,7 +10,7 @@ exports.login = (req, res) => {
 
   users.findOne({ email }, (error, userExisting) => {
     if(error) {
-      return res.status(422).send({error: {title: 'Error in Login', detail: 'Internal DB error'}});
+      return res.dbErr(error);
     }
     if(!userExisting) {
       return res.status(422).send({error: {title: 'Error in Login', detail: 'Username not found'}});
@@ -34,7 +34,7 @@ exports.register = (req, res) => {
 
   users.findOne({ email }, (error, userExisting) => {
     if(error) {
-      return res.status(422).send({error: {title: 'Error in registering', detail: 'Internal DB error'}});
+      return res.dbErr(error);
     }
     if(userExisting) {
       return res.status(422).send({error: {title: 'Error in registering', detail: 'Username already exists'}});
@@ -44,7 +44,7 @@ exports.register = (req, res) => {
 
     usernameNew.save((error, userCreated) => {
       if(error) {
-        return res.status(422).send({error: {title: 'Error in registering', detail: 'Internal DB error'}});
+        return res.dbErr(error);
       }
       return res.json({message: `New username registered with id: ${userCreated._id}`});
     })
@@ -64,7 +64,7 @@ exports.userAuth = (req, res, next) => {
 
     users.findById(tokenDecoded.sub, (error, userExisting) => {
       if(error) {
-        return res.status(422).send({error: {title: 'Error in registering', detail: 'Internal DB error'}});
+        return res.dbErr(error);
       }
       if(userExisting) {
         res.locals.user = userExisting;

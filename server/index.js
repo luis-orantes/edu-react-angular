@@ -8,6 +8,7 @@ const rentalRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
 
 const { userAuth } = require('./controllers/users');
+const { dbErrMid } = require('./middlewares');
 
 // models
 require('./models/rental');
@@ -23,6 +24,7 @@ mongoose.connect(config.DB_URI, () => {
 
 // Middleware
 app.use(bodyParser.json());
+app.use(dbErrMid);
 
 // Api Routes
 app.use('/api/v1/rentals', rentalRoutes);
