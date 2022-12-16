@@ -1,5 +1,13 @@
 
 exports.dbErrMid = (req, res, next) => {
+
+  res.apiErr = (title, msg, status = 422) => {
+    return res
+      .status(status)
+      .send({err: [{title: title, msg: msg}]});
+  }
+
+
   res.dbErr = err => {
     const result = [];
     const prop = 'errors';

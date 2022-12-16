@@ -13,7 +13,7 @@ exports.login = (req, res) => {
       return res.dbErr(error);
     }
     if(!userExisting) {
-      return res.status(422).send({error: {title: 'Error in Login', detail: 'Username not found'}});
+      return res.apiErr('loginErr', 'Error in Login: Username not found');
     }
 
     if(userExisting.passValidate(password)) {
@@ -23,7 +23,7 @@ exports.login = (req, res) => {
       }, config.JWT_SECRET, {expiresIn: '20h'});
       return res.json({ token });
     } else {
-      return res.status(422).send({error: {title: 'Error in Login', detail: 'Invalid password'}}); 
+      return res.apiErr('loginErr', 'Error in Login: Invalid password');
     }
   })
 }
@@ -37,7 +37,7 @@ exports.register = (req, res) => {
       return res.dbErr(error);
     }
     if(userExisting) {
-      return res.status(422).send({error: {title: 'Error in registering', detail: 'Username already exists'}});
+      return res.apiErr('registerErr', 'Error in registering: Username already exists');
     }
 
     const usernameNew = new users({ username, password, email });
@@ -70,7 +70,7 @@ exports.userAuth = (req, res, next) => {
         res.locals.user = userExisting;
         next();
       } else {
-        return res.status(401).send({title: 'Auth', message: 'Not authorized, valid token but user not found'});
+        return res.apiErr('authErr', 'Error in Auth: valid token but user not found', 401);
       }
     })
 
@@ -81,7 +81,7 @@ exports.userAuth = (req, res, next) => {
 
 
 function userAuthNo(res) {
-  return res.status(401).send({title: 'Auth', message: 'Not authorized, login first'});
+  return res.apiErr('authErr', 'Error in Auth: Not authorized, login first', 401);
 }
 
 
