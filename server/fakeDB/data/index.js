@@ -1,6 +1,18 @@
 
+exports.usersData = [
+  {
+    username: 'user1',
+    email: 'a1@b.com',
+    password: '1234',
+  },
+  {
+    username: 'user2',
+    email: 'a2@b.com',
+    password: '1234',
+  },
+]
 
-const rentals = [
+exports.rentals = [
   {
     title: 'Central Apartment',
     city: 'New York',
@@ -45,5 +57,3 @@ const rentals = [
     dailyPrice: 33,
     shared: true,
   }];
-
-  module.exports = rentals;
