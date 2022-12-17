@@ -18,15 +18,7 @@
     font-size: 16px;
   }
 
-  .bwm-btn-main {
-    color: $red-dark;
-    border-color: $red-dark;
 
-    &:hover, &:active, &:focus {
-      color: white;
-      background-color: $red-dark;
-      border-color: $red-dark;
-      box-shadow: none;
-    }
-  }
+
+  
 }

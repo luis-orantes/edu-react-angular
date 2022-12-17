@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bwm-colors";
+@import 'forms';
 
 html, body {
   height: 100%;
@@ -28,4 +29,16 @@ html, body, p {
     color: #bf1818 !important;
   }
 
+}
+
+.btn.bwm-btn-main {
+  color: $red-dark;
+  border-color: $red-dark;
+
+  &:hover, &:active, &:focus {
+    color: white;
+    background-color: $red-dark;
+    border-color: $red-dark;
+    box-shadow: none;
+  }
 }
