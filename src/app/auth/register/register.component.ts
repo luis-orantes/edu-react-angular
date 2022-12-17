@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterForm } from '../shared/register-form.model'
 
 @Component({
   selector: 'bwm-register',
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  registerFormData: any = {};
+  registerFormData: RegisterForm;
 
   constructor() { }
 
   ngOnInit() {
+    this.registerFormData = new RegisterForm();
   }
 
   get print() {
