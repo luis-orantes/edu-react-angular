@@ -41,4 +41,9 @@ html, body, p {
     border-color: $red-dark;
     box-shadow: none;
   }
+
+  &:disabled {
+    background-color: transparent;
+    color: $red-dark;
+  }
 }
