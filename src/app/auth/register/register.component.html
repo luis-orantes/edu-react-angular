@@ -86,7 +86,7 @@
             </div> -->
           </div>
           <button
-            [disabled]="registerForm.invalid"
+            (click)="register(registerForm)"
             type="submit"
             class="btn bwm-btn-main"
           >

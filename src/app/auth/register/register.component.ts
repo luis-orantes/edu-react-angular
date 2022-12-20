@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { RegisterForm } from '../shared/register-form.model'
 
 @Component({
@@ -13,13 +14,32 @@ export class RegisterComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit() {
     this.registerFormData = new RegisterForm();
   }
 
+
   get print() {
     return JSON.stringify(this.registerFormData);
   }
+
+
+  register(form: NgForm) {
+    this.validateInputs(form);
+
+    if(form.invalid) {
+      return
+    }
+  }
+
+  validateInputs(form: NgForm) {
+    for(let inputKey in form.controls) {
+      form.controls[inputKey].markAsDirty();
+    }
+  }
+
+
 
 
 }
