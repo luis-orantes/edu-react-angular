@@ -31,6 +31,8 @@ export class RegisterComponent implements OnInit {
     if(form.invalid) {
       return
     }
+
+    alert('Submitting');
   }
 
   validateInputs(form: NgForm) {

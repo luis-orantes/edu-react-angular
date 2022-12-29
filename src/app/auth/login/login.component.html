@@ -15,14 +15,14 @@
               class="form-control"
               id="email"
             >
-            <!-- <div class="alert alert-danger">
-              <div>
+            <div class="alert alert-danger" *ngIf="email.invalid && !email.pristine">
+              <div *ngIf="email.errors.required">
                 Email is required.
               </div>
-              <div>
+              <div *ngIf="email.errors.pattern">
                 Must be valid email format!
               </div>
-            </div> -->
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -33,9 +33,18 @@
               id="password"
             >
           </div>
+          <div class="alert alert-danger" *ngIf="password.invalid && !password.pristine">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+            <div *ngIf="password.errors.minlength">
+              Must be at least 4 chars long!
+            </div>
+          </div>
           <button
             type="submit"
             class="btn bwm-btn-main"
+            [disabled]="loginForm.invalid"
             (click)="login()"
           >Submit</button>
         </form>
