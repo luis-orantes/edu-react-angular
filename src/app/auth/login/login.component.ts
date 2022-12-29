@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validator, AbstractControl, Validators, NgForm } from '@angular/forms';
+
 import { RegisterForm } from '../shared/register-form.model';
+import { validateFormInputs } from 'src/app/shared/fn/formFn';
 
 @Component({
   selector: 'bwm-login',
@@ -28,15 +30,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: NgForm) {
-    this.validateInputs(form);
+    validateFormInputs(form);
     if(this.loginForm.invalid) { return; }
     alert(this.print);
-  }
-
-  validateInputs(form: NgForm) {
-    for(let inputKey in form.controls) {
-      form.controls[inputKey].markAsDirty();
-    }
   }
 
   get email(): AbstractControl { return this.loginForm.get('email') }
