@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validator, AbstractControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validator, AbstractControl, Validators, NgForm } from '@angular/forms';
 import { RegisterForm } from '../shared/register-form.model';
 
 @Component({
@@ -27,9 +27,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  login(form: NgForm) {
+    this.validateInputs(form);
     if(this.loginForm.invalid) { return; }
     alert(this.print);
+  }
+
+  validateInputs(form: NgForm) {
+    for(let inputKey in form.controls) {
+      form.controls[inputKey].markAsDirty();
+    }
   }
 
   get email(): AbstractControl { return this.loginForm.get('email') }
