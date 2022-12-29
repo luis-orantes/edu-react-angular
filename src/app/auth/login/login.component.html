@@ -22,6 +22,9 @@
               <div *ngIf="email.errors.emailBan">
                 This email is banned.
               </div>
+              <div *ngIf="email.errors.emailFree">
+                Free email not allowed.
+              </div>
               <div *ngIf="email.errors.pattern">
                 Must be valid email format!
               </div>
