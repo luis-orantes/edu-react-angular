@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validator, AbstractControl, Validators, NgForm 
 
 import { RegisterForm } from '../shared/register-form.model';
 import { validateFormInputs } from 'src/app/shared/fn/formFn';
+import { emailBanVal } from 'src/app/shared/fn/valFn';
 
 @Component({
   selector: 'bwm-login',
@@ -24,7 +25,11 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+      email: ['', [
+        Validators.required,
+        Validators.pattern(this.emailPattern),
+        emailBanVal('a@b.com'),
+      ]],
       password: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
