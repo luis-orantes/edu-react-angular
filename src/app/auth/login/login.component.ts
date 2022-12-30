@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       email: ['', [
         Validators.required,
         Validators.pattern(this.emailPattern),
-        emailBanVal('a@b.com'),
+        // emailBanVal('a@b.com'),
         emailFreeVal(),
       ]],
       password: ['', [Validators.required, Validators.minLength(4)]],

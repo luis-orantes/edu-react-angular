@@ -14,12 +14,13 @@
               type="email"
               class="form-control"
               id="email"
+              bwmEmailBan="a@b.com"
             >
             <div class="alert alert-danger" *ngIf="email.invalid && !email.pristine">
               <div *ngIf="email.errors.required">
                 Email is required.
               </div>
-              <div *ngIf="email.errors.emailBan">
+              <div *ngIf="email.errors.bwmEmailBan">
                 This email is banned.
               </div>
               <div *ngIf="email.errors.emailFree">
