@@ -15,6 +15,7 @@
               class="form-control"
               id="email"
               bwmEmailBan="a@b.com"
+              bwmEmailFree
             >
             <div class="alert alert-danger" *ngIf="email.invalid && !email.pristine">
               <div *ngIf="email.errors.required">
@@ -23,7 +24,7 @@
               <div *ngIf="email.errors.bwmEmailBan">
                 This email is banned.
               </div>
-              <div *ngIf="email.errors.emailFree">
+              <div *ngIf="email.errors.bwmEmailFree">
                 Free email not allowed.
               </div>
               <div *ngIf="email.errors.pattern">

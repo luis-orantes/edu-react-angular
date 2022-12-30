@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.pattern(this.emailPattern),
         // emailBanVal('a@b.com'),
-        emailFreeVal(),
+        // emailFreeVal(),
       ]],
       password: ['', [Validators.required, Validators.minLength(4)]],
     });

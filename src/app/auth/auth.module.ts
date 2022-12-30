@@ -5,7 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { EmailBanDirective } from '../shared/directives/val/email-ban.directive';
+import { EmailBanDirective } from 'src/app/shared/directives/val/email-ban.directive';
+import { EmailFreeDirective } from 'src/app/shared/directives/val/email-free.directive';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { EmailBanDirective } from '../shared/directives/val/email-ban.directive'
     LoginComponent,
     RegisterComponent,
     EmailBanDirective,
+    EmailFreeDirective,
   ],
   imports: [
     CommonModule,
