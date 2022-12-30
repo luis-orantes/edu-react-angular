@@ -1,5 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
+import { Validator, AbstractControl, NG_VALIDATORS, ValidationErrors } from '@angular/forms';
 
 
 @Directive({
@@ -12,7 +12,7 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 })
 export class EmailFreeDirective implements Validator {
 
-  validate(control: AbstractControl): {[key: string]: any} | null {
+  validate(control: AbstractControl): ValidationErrors {
     return /gmail|hotmail/i.test(control.value) ? {'bwmEmailFree': {value: control.value}} : null;
   }
 
