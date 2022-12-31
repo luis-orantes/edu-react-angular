@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
       password: ['', [
         Validators.required,
         Validators.minLength(4)],
-      ]},
+      ]}/*,
       { // form validators
         validators: [
           sameAsVal(['password', 'email']), // just a test
         ]
-      }
+      }*/
     );
   }
 
