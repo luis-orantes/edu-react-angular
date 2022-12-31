@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EmailBanDirective } from 'src/app/shared/directives/val/email-ban.directive';
 import { EmailFreeDirective } from 'src/app/shared/directives/val/email-free.directive';
+import { SameAsDirective } from 'src/app/shared/directives/val/same-as.directive';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { EmailFreeDirective } from 'src/app/shared/directives/val/email-free.dir
     RegisterComponent,
     EmailBanDirective,
     EmailFreeDirective,
+    SameAsDirective,
   ],
   imports: [
     CommonModule,
