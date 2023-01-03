@@ -8,8 +8,6 @@ import { RentalListingComponent } from './rental-listing/rental-listing.componen
 import { RentalComponent } from './rental.component';
 import { RentalCardComponent } from '../shared/rental-card/rental-card.component';
 
-import { RentalService } from './shared/rental.service';
-
 import { FirstUpperLetterPipe } from '../shared/pipes/first-upper-letter.pipe';
 
 import { BwmHighLightDirective } from '../shared/directives/bwm-high-light.directive';
@@ -36,9 +34,6 @@ const routes: Routes = [
     BwmHighLightDirective,
     CustomNgIfDirective,
     CustomNgForDirective,
-  ],
-  providers: [
-    RentalService,
   ],
   imports: [
     RouterModule.forChild(routes),

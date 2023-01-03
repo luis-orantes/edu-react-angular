@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Rental } from './rental.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RentalService {
 
   constructor(private http: HttpClient) {}
