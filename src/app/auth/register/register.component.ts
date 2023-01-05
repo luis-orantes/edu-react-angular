@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   registerFormData: RegisterForm;
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  error: [];
 
   constructor(
     private authService: AuthService,
@@ -42,6 +43,9 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.registerFormData).subscribe(_ => {
       this.router.navigate(['/login']);
+    }, (err) => {
+      this.error = err;
+      console.log('err ' + JSON.stringify(err));
     })
     
   }
