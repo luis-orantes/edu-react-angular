@@ -98,12 +98,12 @@
             Submit
         </button>
         </form>
-        <!-- <div class="alert alert-danger">
-          <p *ngFor="let error of errors">
-            {{error.detail}}
+        <div *ngIf="formErrs.length" class="alert alert-danger">
+          <p *ngFor="let formErr of formErrs">
+            {{formErr.msg}}
           </p>
-        </div> -->
-        {{print}}
+        </div>
+        <!-- {{print}} -->
       </div>
       <div class="col-md-6 ml-auto">
         <div class="image-container">
