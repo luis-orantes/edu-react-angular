@@ -36,15 +36,17 @@ export class RegisterComponent implements OnInit {
 
   register(form: NgForm) {
     validateFormInputs(form);
-
+    
     if(form.invalid) {
-      return
+      return;
     }
-
+    
     this.formErrs = [];
-
+    
     this.authService.register(this.registerFormData).subscribe(_ => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], {
+        queryParams: {msg: 'The user has been successfully registered'},
+      });
     }, (err: BwmApi.errs[]) => this.formErrs = err)
     
   }
