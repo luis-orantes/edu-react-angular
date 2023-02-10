@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   msg: string;
-  msgTimeout: NodeJS.Timer;
+  msgTimeout: number;
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
   constructor(
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams.subscribe(params => {
       this.msg = params['msg'] ? params['msg'] : null;
 
-      this.msgTimeout = setTimeout(_ => {
+      this.msgTimeout = window.setTimeout(_ => {
         this.router.navigate([], {
           replaceUrl: true,
           queryParams: {msg: null},
