@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RegisterForm } from '../shared/register-form.model';
 import { validateFormInputs } from 'src/app/shared/fn/formFn';
 import { emailBanVal, emailFreeVal, sameAsVal } from 'src/app/shared/fn/valFn';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   selector: 'bwm-login',
@@ -20,11 +21,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   msg: string;
   msgTimeout: number;
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  formErrs: BwmApi.errs[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -59,7 +62,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(form: NgForm) {
     validateFormInputs(form);
     if(this.loginForm.invalid) { return; }
-    alert(this.print);
+
+    this.formErrs = [];
+    return this.authService
+      .login(this.loginForm.value)
+      .subscribe((token: string) => {
+        this.router.navigate(['/rentals']);
+        console.log(JSON.stringify(token));
+      }, (errs: BwmApi.errs[]) => {
+        this.formErrs = errs;
+      })
+
   }
 
   get email(): AbstractControl { return this.loginForm.get('email') }
