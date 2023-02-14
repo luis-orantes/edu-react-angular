@@ -3,18 +3,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { RegisterForm } from 'src/app/auth/shared/register-form.model';
 import { extractApiErr } from 'src/app/shared/helpers/fn';
+
+const jwt = new JwtHelperService();
+
+class TokenData {
+  exp: number = 0;
+  userName: string = '';
+  userId: string = ''
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  private tokenData: TokenData;
+
   constructor(
     private httpClient: HttpClient,
-  ) { }
+  ) {
+    this.tokenData = new TokenData();
+  }
 
   register(formData: RegisterForm): Observable<any> {
     return this.httpClient
@@ -37,8 +50,11 @@ export class AuthService {
           throwError(extractApiErr(resErr))));
   }
 
-  saveToken(token: string): void {
-    alert('saving token!');
+  saveToken(token: string): string {
+    const tokenDecoded = jwt.decodeToken(token);
+    this.tokenData =  tokenDecoded;
+    localStorage.setItem('bwm_auth_token', token);
+    return token;
   }
 
 
