@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   get user() {
-    console.log('tokenData ' + JSON.stringify(this.tokenData));
+    // console.log('tokenData ' + JSON.stringify(this.tokenData));
     return this.tokenData.user;
   }
 

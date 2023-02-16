@@ -10,18 +10,25 @@
         <button class="btn btn-outline-success bwm-btn-main" type="submit">Search</button>
       </form>
       <ul class="navbar-nav mb-2 mb-lg-0">
-        <li *ngIf="isAuthenticated" class="nav-item active">
-          <div class="nav-link">{{user}}</div>
+        <li *ngIf="isAuthenticated" class="nav-item">
+          <div class="nav-link active">Hello {{user}}!</div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/register">Register</a>
-        </li>
+        <div *ngIf="isAuthenticated else notAuthMenu">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/">Logout</a>
+          </li>
+        </div>
+        <ng-template #notAuthMenu>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/register">Register</a>
+          </li>
+        </ng-template>
 <!--         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
