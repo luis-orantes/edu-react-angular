@@ -58,6 +58,17 @@ export class AuthService {
     return token;
   }
 
+  checkAuthentication(): boolean {
+    const token = localStorage.getItem('bwm_auth_token');
+    if(!token) { return false; }
+
+    const tokenDecoded = jwt.decodeToken(token);
+    if(!tokenDecoded) { return false; }
+
+    this.tokenData = tokenDecoded;
+    return true;
+  }
+
   get user() {
     console.log('tokenData ' + JSON.stringify(this.tokenData));
     return this.tokenData.user;
