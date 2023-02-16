@@ -1,5 +1,5 @@
 import { templateJitUrl } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'bmw-header',
@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['header.component.scss']
 })
 export class HeaderComponent {
+  @Input('isAuthenticated') isAuthenticated = false;
+  @Input('user') user = '';
 
-  customNumber: 123;
+
+
+
 }

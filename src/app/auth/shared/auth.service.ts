@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import * as moment from "moment";
 
 import { RegisterForm } from 'src/app/auth/shared/register-form.model';
 import { extractApiErr } from 'src/app/shared/helpers/fn';
@@ -12,7 +13,7 @@ const jwt = new JwtHelperService();
 
 class TokenData {
   exp: number = 0;
-  userName: string = '';
+  user: string = '';
   userId: string = ''
 }
 
@@ -55,6 +56,19 @@ export class AuthService {
     this.tokenData =  tokenDecoded;
     localStorage.setItem('bwm_auth_token', token);
     return token;
+  }
+
+  get user() {
+    console.log('tokenData ' + JSON.stringify(this.tokenData));
+    return this.tokenData.user;
+  }
+
+  get isAuthenticated() {
+    return moment().isBefore(this.expiration);
+  }
+
+  get expiration() {
+    return moment.unix(this.tokenData.exp);
   }
 
 

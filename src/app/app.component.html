@@ -1,6 +1,9 @@
 
 
-<bmw-header></bmw-header>
+<bmw-header
+  [isAuthenticated]="authService.isAuthenticated"
+  [user]="authService.user"
+></bmw-header>
 
 <div class="continer pt-5">
   <router-outlet></router-outlet>
