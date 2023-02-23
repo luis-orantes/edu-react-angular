@@ -66,9 +66,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.formErrs = [];
     return this.authService
       .login(this.loginForm.value)
-      .subscribe((token: string) => {
+      .subscribe((_: string) => {
         this.router.navigate(['/rentals']);
-        console.log(JSON.stringify(token));
       }, (errs: BwmApi.errs[]) => {
         this.formErrs = errs;
       })

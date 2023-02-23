@@ -51,6 +51,11 @@ export class AuthService {
           throwError(extractApiErr(resErr))));
   }
 
+  logout() {
+    localStorage.removeItem('bwm_auth_token');
+    this.tokenData = new TokenData();
+  }
+
   saveToken(token: string): string {
     const tokenDecoded = jwt.decodeToken(token);
     this.tokenData =  tokenDecoded;
