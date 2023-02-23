@@ -14,14 +14,14 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
   ) {
-    this.logout = this.logout.bind(this);
+    // this.logout = this.logout.bind(this);
   }
 
   ngOnInit() {
     this.authService.checkAuthentication();
   }
 
-  logout() {
+  logout = () => {
     this.authService.logout();
     this.router.navigate(['/rentals']);
   }
