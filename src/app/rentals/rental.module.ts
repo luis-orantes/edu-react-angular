@@ -13,13 +13,16 @@ import { FirstUpperLetterPipe } from '../shared/pipes/first-upper-letter.pipe';
 import { BwmHighLightDirective } from '../shared/directives/bwm-high-light.directive';
 import { CustomNgIfDirective } from '../shared/directives/custom-ng_if.directive';
 import { CustomNgForDirective } from '../shared/directives/custom-ng_for.directive';
+import { RentalSecretComponent } from './rental-secret/rental-secret.component';
+import { AuthGuard } from 'src/app/auth/shared/auth.guard';
 
 const routes: Routes = [
   {path: 'rentals',
     component: RentalComponent,
     children: [
       {path: '', component: RentalListingComponent},
-      {path: ':rentalId', component: RentalDetailComponent}
+      {path: 'secret', component: RentalSecretComponent, canActivate: [AuthGuard]},
+      {path: ':rentalId', component: RentalDetailComponent},
     ]
   }
 ];
@@ -34,6 +37,7 @@ const routes: Routes = [
     BwmHighLightDirective,
     CustomNgIfDirective,
     CustomNgForDirective,
+    RentalSecretComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
