@@ -23,6 +23,7 @@ class TokenData {
 export class AuthService {
 
   private tokenData: TokenData;
+  urlRedirect: string;
 
   constructor(
     private httpClient: HttpClient,
