@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MapModule } from '../shared/modules/map/map/map.module';
+
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import { RentalListingComponent } from './rental-listing/rental-listing.component';
 import { RentalComponent } from './rental.component';
@@ -15,6 +17,9 @@ import { CustomNgIfDirective } from '../shared/directives/custom-ng_if.directive
 import { CustomNgForDirective } from '../shared/directives/custom-ng_for.directive';
 import { RentalSecretComponent } from './rental-secret/rental-secret.component';
 import { AuthGuard } from 'src/app/auth/shared/auth.guard';
+
+
+
 
 const routes: Routes = [
   {path: 'rentals',
@@ -43,6 +48,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     HttpClientModule,
+    MapModule,
   ]
 })
 export class RentalModule {}

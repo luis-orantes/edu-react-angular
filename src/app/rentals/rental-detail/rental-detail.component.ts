@@ -28,6 +28,10 @@ export class RentalDetailComponent implements OnInit {
     });
   }
 
+  get rentalLocation(): string {
+    return `${this.rental.city}, ${this.rental.street}`;
+  }
+
 
 
 
