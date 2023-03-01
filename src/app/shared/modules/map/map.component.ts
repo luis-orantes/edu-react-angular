@@ -3,6 +3,7 @@ import tt from '@tomtom-international/web-sdk-maps';
 import { map } from 'rxjs/operators';
 
 import { AppConfig } from 'src/app/shared/app-config';
+import { MapService } from './map.service';
 
 @Component({
   selector: 'bwm-map',
@@ -14,9 +15,12 @@ export class MapComponent {
 
   @Input('location') set location (location: string) {
     this.createMap();
+    this.getGeoloction(location);
   };
 
-  constructor() { }
+  constructor(
+    private mapService: MapService,
+  ) { }
 
   createMap() {
     const map = tt.map({
@@ -25,6 +29,13 @@ export class MapComponent {
       style: 'tomtom://vector/1/basic-main',
     });
     map.addControl(new tt.NavigationControl());
+  }
+
+  getGeoloction(location: string) {
+    this.mapService.reqGeoLocation(location)
+      .subscribe(res => {
+        console.log('l ' + JSON.stringify(res));
+    });
   }
 
 
