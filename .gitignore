@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 
 /server/config
+/src/app/shared/app-config.ts
