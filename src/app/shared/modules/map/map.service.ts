@@ -1,8 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AppConfig } from '../../app-config';
+
+interface tomTomRes {
+  summary: {[key: string]: any};
+  results: {[key: string]: any}[];
+}
+
+interface positionRes {
+  lat: number;
+  lon: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +24,18 @@ export class MapService {
     private http: HttpClient,
   ) { }
 
-  reqGeoLocation(location: string): Observable<any>
+  reqGeoLocation(location: string): Observable<positionRes>
   {
     return this.http
-      .get(`https://api.tomtom.com/search/2/geocode/${location}.JSON?key=${AppConfig.TT_API_KEY}`);
+      .get(`https://api.tomtom.com/search/2/geocode/${location}.JSON?key=${AppConfig.TT_API_KEY}`)
+      .pipe(
+        map((res: tomTomRes) => {
+          if(res.results && res.results.length>0) {
+            return res.results[0].position;
+          }
+          throw new Error('Location not found!');
+        })
+      );
   }
 
 

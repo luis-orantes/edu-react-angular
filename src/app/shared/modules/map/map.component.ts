@@ -18,23 +18,26 @@ export class MapComponent {
     this.getGeoloction(location);
   };
 
+  private map: any;
+
   constructor(
     private mapService: MapService,
   ) { }
 
   createMap() {
-    const map = tt.map({
+    this.map = tt.map({
       key: AppConfig.TT_API_KEY,
       container: 'bwm-map',
       style: 'tomtom://vector/1/basic-main',
+      zoom: 15,
     });
-    map.addControl(new tt.NavigationControl());
+    this.map.addControl(new tt.NavigationControl());
   }
 
-  getGeoloction(location: string) {
+  private getGeoloction(location: string) {
     this.mapService.reqGeoLocation(location)
       .subscribe(res => {
-        console.log('l ' + JSON.stringify(res));
+        this.map.setCenter(new tt.LngLat(res.lon, res.lat));
     });
   }
 
