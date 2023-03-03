@@ -30,14 +30,21 @@ export class MapComponent {
       container: 'bwm-map',
       style: 'tomtom://vector/1/basic-main',
       zoom: 15,
+      scrollZoom: false,
     });
-    this.map.addControl(new tt.NavigationControl());
+    // this.map.addControl(new tt.NavigationControl());
   }
 
   private getGeoloction(location: string) {
     this.mapService.reqGeoLocation(location)
       .subscribe(res => {
         this.map.setCenter(new tt.LngLat(res.lon, res.lat));
+
+        const markerDiv = document.createElement('div');
+        markerDiv.className = 'bwm-marker';
+        new tt.Marker()
+          .setLngLat([res.lon, res.lat])
+          .addTo(this.map);
     });
   }
 
