@@ -15,7 +15,8 @@ export class MapComponent {
 
   @Input('location') set location (location: string) {
     this.createMap();
-    this.getGeoloction(location);
+    // this.getGeolocation('ajsldfklakdjsf'); // to test an invalid location
+    this.getGeolocation(location);
   };
 
   private map: any;
@@ -35,7 +36,7 @@ export class MapComponent {
     // this.map.addControl(new tt.NavigationControl());
   }
 
-  private getGeoloction(location: string) {
+  private getGeolocation(location: string) {
     this.mapService.reqGeoLocation(location)
       .subscribe(res => {
         this.map.setCenter(new tt.LngLat(res.lon, res.lat));
@@ -47,7 +48,17 @@ export class MapComponent {
         })
           .setLngLat([res.lon, res.lat])
           .addTo(this.map);
-    });
+    }, (err: Error) => {
+      new tt.Popup({
+        className: 'bwm-popup',
+        closeButton: false,
+        closeOnClick: false,
+      })
+        .setLngLat(new tt.LngLat(0,0))
+        .setHTML(`<p>${err.message}</p>`)
+        .addTo(this.map)
+    }
+    );
   }
 
 

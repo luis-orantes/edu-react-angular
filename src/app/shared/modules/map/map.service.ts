@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { AppConfig } from '../../app-config';
 
@@ -33,9 +33,14 @@ export class MapService {
           if(res.results && res.results.length>0) {
             return res.results[0].position;
           }
-          throw new Error('Location not found!');
-        })
+          throw this.locationErr;
+        }),
+        catchError(_ => throwError(this.locationErr))
       );
+  }
+
+  private get locationErr() {
+    return new Error('Location not found!');
   }
 
 
