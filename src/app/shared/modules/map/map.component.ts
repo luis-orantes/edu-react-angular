@@ -42,7 +42,9 @@ export class MapComponent {
 
         const markerDiv = document.createElement('div');
         markerDiv.className = 'bwm-marker';
-        new tt.Marker()
+        new tt.Marker({
+          element: markerDiv,
+        })
           .setLngLat([res.lon, res.lat])
           .addTo(this.map);
     });
