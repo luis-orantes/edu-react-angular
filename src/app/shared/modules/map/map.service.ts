@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of as ObservableOf } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import tt from '@tomtom-international/web-sdk-maps';
 
@@ -21,9 +21,18 @@ interface positionRes {
 })
 export class MapService {
 
+  private locationMem: {[key: string]: positionRes} = {};
+
   constructor(
     private http: HttpClient,
   ) { }
+
+  getGeolocationCached(location: string): Observable<positionRes> {
+    const result = this.locationCaheGet(location);
+    return result ?
+      ObservableOf(result) :
+      this.reqGeoLocation(location);
+  }
 
   reqGeoLocation(location: string): Observable<positionRes>
   {
@@ -32,7 +41,9 @@ export class MapService {
       .pipe(
         map((res: tomTomRes) => {
           if(res.results && res.results.length>0) {
-            return res.results[0].position;
+            const { position } = res.results[0];
+            this.locationCacheSet(location, position);
+            return position;
           }
           throw this.locationErr;
         }),
@@ -80,6 +91,18 @@ export class MapService {
       .setLngLat(new tt.LngLat(0, 0))
       .setHTML(`<p>${message}</p>`)
       .addTo(map);
+  }
+
+  locationCacheSet(location: string, position: positionRes): void {
+    this.locationMem[this.normalizeLocation(location)] = position;
+  }
+
+  locationCaheGet(location: string): positionRes {
+    return this.locationMem[this.normalizeLocation(location)];
+  }
+
+  normalizeLocation(location: string): string {
+    return location.replace(/\s/g, '').toLowerCase();
   }
 
 

@@ -26,7 +26,7 @@ export class MapComponent {
 
 
   private getGeolocation(location: string) {
-    this.mapService.reqGeoLocation(location)
+    this.mapService.getGeolocationCached(location)
       .subscribe(res => {
         this.mapService.initMap(this.map, res);
     }, (err: Error) => {
