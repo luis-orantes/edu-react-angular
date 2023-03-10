@@ -24,12 +24,15 @@ exports.getRentalById = (req, res) => {
 exports.createRental = (req, res) => {
   const rentalData = req.body;
 
+  rentalData.owner = res.locals.user;
+
   Rental.create(rentalData, (error, createdRental) => {
     if (error) {
       return res.dbErr(error);
     }
-    res.json({
-      message: `rental with id ${createdRental._id} was added!` 
-    });  
+    return res.json(createdRental);
+      // res.json({
+      //   message: `rental with id ${createdRental._id} was added!` 
+      // });  
   })
 }
