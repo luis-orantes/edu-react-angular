@@ -17,6 +17,7 @@ import { CustomNgIfDirective } from '../shared/directives/custom-ng_if.directive
 import { CustomNgForDirective } from '../shared/directives/custom-ng_for.directive';
 import { RentalSecretComponent } from './rental-secret/rental-secret.component';
 import { AuthGuard } from 'src/app/auth/shared/auth.guard';
+import { RentalNewComponent } from './rental-new/rental-new/rental-new.component';
 
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
     component: RentalComponent,
     children: [
       {path: '', component: RentalListingComponent},
+      {path: 'new', component: RentalNewComponent, canActivate: [AuthGuard]},
       {path: 'secret', component: RentalSecretComponent, canActivate: [AuthGuard]},
       {path: ':rentalId', component: RentalDetailComponent},
     ]
@@ -43,6 +45,7 @@ const routes: Routes = [
     CustomNgIfDirective,
     CustomNgForDirective,
     RentalSecretComponent,
+    RentalNewComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
