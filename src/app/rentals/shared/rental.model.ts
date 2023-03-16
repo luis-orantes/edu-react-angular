@@ -1,6 +1,13 @@
 
 
 export class Rental {
+
+  static readonly RENTAL_CATEGORIES = [
+    'apartment',
+    'house',
+    'condo',
+  ];
+
   _id: string;
   title: string;
   city: string;
