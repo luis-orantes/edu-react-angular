@@ -34,6 +34,7 @@ html, body, p {
 .btn.bwm-btn-main {
   color: $red-dark;
   border-color: $red-dark;
+  margin-top: 10px;
 
   &:hover, &:active, &:focus {
     color: white;
