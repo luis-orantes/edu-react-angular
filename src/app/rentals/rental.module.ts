@@ -2,6 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { MapModule } from '../shared/modules/map/map.module';
 
@@ -52,6 +53,7 @@ const routes: Routes = [
     CommonModule,
     HttpClientModule,
     MapModule,
+    FormsModule,
   ]
 })
 export class RentalModule {}

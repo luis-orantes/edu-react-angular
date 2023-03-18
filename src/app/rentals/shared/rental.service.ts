@@ -19,6 +19,10 @@ export class RentalService {
     return this.http.get<Rental>(`/api/v1/rentals/${rentalId}`);
   }
 
+  newRental(rentalData: Rental) {
+    alert(JSON.stringify(rentalData));
+  }
+
 
 
 
