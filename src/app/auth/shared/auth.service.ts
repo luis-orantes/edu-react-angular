@@ -64,6 +64,10 @@ export class AuthService {
     return token;
   }
 
+  getToken(): string {
+    return localStorage.getItem('bwm_auth_token');
+  }
+
   checkAuthentication(): boolean {
     const token = localStorage.getItem('bwm_auth_token');
     if(!token) { return false; }
