@@ -19,9 +19,9 @@ export class TokenInterceptorService implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if(!req.url.startsWith('/api/'))
+      return next.handle(req);
 
-
-    // auth: `Bearer ${this.authService.getToken()}`,
     const token = this.authService.getToken();
     if(token) {
       req = req.clone({
