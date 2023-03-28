@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const config = require('./config/dev');
 const rentalRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
+const bookingRoutes = require('./routes/bookings');
 
 const { userAuth } = require('./controllers/users');
 const { dbErrMid } = require('./middlewares');
@@ -13,6 +14,7 @@ const { dbErrMid } = require('./middlewares');
 // models
 require('./models/rental');
 require('./models/users');
+require('./models/bookings');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -29,6 +31,7 @@ app.use(dbErrMid);
 // Api Routes
 app.use('/api/v1/rentals', rentalRoutes);
 app.use('/api/v1/users', usersRoutes);
+app.use('/api/v1/bookings', bookingRoutes);
 
 app.get('/api/v1/secret', userAuth, (req, res) => {
     res.send({title: 'Auth', message: `Secret message for ${res.locals.user.username}`});
