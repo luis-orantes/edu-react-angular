@@ -36,3 +36,25 @@ exports.createRental = (req, res) => {
       // });  
   })
 }
+
+exports.isUserRentalOwner = (req, res, next) => {
+  const { rental } = req.body;
+  const user = res.locals.user;
+
+  if(!rental)
+    return res.apiErr('param', '"rental" paramenter missing!');
+
+  Rental.findById(rental)
+  .populate('owner')
+  .exec((error, foundRental) => {
+    if(error)
+      return res.dbErr(error);
+
+    if(foundRental.owner.id === user.id) {
+      return res
+        .apiErr('Invalid User', 'Cannot create booking on your rental');
+    }
+
+    next();
+  })
+}
