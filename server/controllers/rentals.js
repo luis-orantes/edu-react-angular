@@ -42,7 +42,7 @@ exports.isUserRentalOwner = (req, res, next) => {
   const user = res.locals.user;
 
   if(!rental)
-    return res.apiErr('param', '"rental" paramenter missing!');
+    return res.apiErr('param', `'rental' paramenter missing!`);
 
   Rental.findById(rental)
   .populate('owner')
