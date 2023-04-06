@@ -1,31 +1,28 @@
 
 const moment = require('moment');
+const { async } = require('rxjs/internal/scheduler/async');
 
 const Bookings = require("../models/bookings");
 
-exports.createBooking = (req, res) => {
+exports.createBooking = async(req, res) => {
   const bookingData = req.body;
   const booking = new Bookings({...bookingData, user: res.locals.user});
 
   if(!bookingValidDate(booking))
     return res.apiErr('Invalid bookings', 'Invalid dates!');
 
-  Bookings.find({rental: bookingData.rental}, (error, rentalBookings) => {
-    if(error)
-      return res.dbErr(error);
-
+  try {
+    const rentalBookings = await Bookings.find({rental: bookingData.rental});
     const isValid = bookingValid(booking, rentalBookings);
     if(isValid) {
-      booking.save((error, bookingSaved) => {
-        if(error)
-          return res.dbErr(error);
-  
-        return res.json({startAt: bookingSaved.startAt, endAt: bookingSaved.endAt});
-      });
+      const bookingSaved = await booking.save();
+      return res.json({startAt: bookingSaved.startAt, endAt: bookingSaved.endAt});
     } else {
       return res.apiErr('Invalid bookings', 'Date already taken!');
     }
-  })
+  } catch(error) {
+    return res.dbErr(error);
+  }
 }
 
 function bookingValid(booking, rentalBookings = []) {
