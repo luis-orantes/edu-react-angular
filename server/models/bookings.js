@@ -3,7 +3,7 @@ const moongose = require('mongoose');
 const Schema = moongose.Schema;
 
 const bookingSchema = new Schema({
-  starAt: {type: Date, required: 'start date is required'},
+  startAt: {type: Date, required: 'start date is required'},
   endAt: {type: Date, required: 'end date is required'},
   price: {type: Number, required: true},
   nights: {type: Number, required: true},
