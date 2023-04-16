@@ -18,6 +18,7 @@ import { CustomNgForDirective } from '../shared/directives/custom-ng_for.directi
 import { RentalSecretComponent } from './rental-secret/rental-secret.component';
 import { AuthGuard } from 'src/app/auth/shared/auth.guard';
 import { RentalNewComponent } from './rental-new/rental-new/rental-new.component';
+import { RentalBookingComponent } from './components/rental-booking/rental-booking/rental-booking.component';
 
 
 
@@ -46,6 +47,7 @@ const routes: Routes = [
     CustomNgForDirective,
     RentalSecretComponent,
     RentalNewComponent,
+    RentalBookingComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
