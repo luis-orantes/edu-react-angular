@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'bwm-rental-booking',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalBookingComponent implements OnInit {
 
+  @Input('isAuth') isAuth = false;
+  
   constructor() { }
 
   ngOnInit() {

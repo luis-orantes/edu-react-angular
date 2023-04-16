@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { RentalService } from '../shared/rental.service';
 import { Rental } from '../shared/rental.model';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   selector: 'bwm-rental-detail',
@@ -16,6 +17,7 @@ export class RentalDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private rentalService: RentalService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
