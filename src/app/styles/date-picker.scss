@@ -1,0 +1,17 @@
+
+.md-drppicker {
+
+  &.shown {
+    .calendar.right {
+      display: none;
+    }
+  }
+
+  td.active, td.active:hover {
+    background-color: $red-dark !important;
+  }
+
+  .btn {
+    background-color: $red-dark !important;
+  }
+}
