@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Moment } from 'moment';
 
 import { Booking } from 'src/app/booking/shared/booking.model';
+import { Rental } from 'src/app/rentals/shared/rental.model';
 
 @Component({
   selector: 'bwm-rental-booking',
@@ -11,6 +12,7 @@ import { Booking } from 'src/app/booking/shared/booking.model';
 export class RentalBookingComponent implements OnInit {
 
   @Input('isAuth') isAuth = false;
+  @Input('rental') rental: Rental;
   calendar: { startDate: Moment, endDate: Moment };
   locale = {
     format: "YYYY/MM/DD",
@@ -31,8 +33,23 @@ export class RentalBookingComponent implements OnInit {
   updateBookingDates({startDate, endDate}: {[key: string]: Moment}) {
     if(!startDate || !endDate) { return; };
 
+    if(startDate.isSame(endDate, 'days')) {
+      alert('Invalid days!');
+      this.calendar = null;
+      // return;
+    }
+
     this.newBooking.startAt = startDate.format();
     this.newBooking.endAt = endDate.format();
+    this.newBooking.nights = endDate.diff(startDate, 'days');
+    this.newBooking.price = this.newBooking.nights * this.rental.dailyPrice;
+  }
+
+  get canReserve() {
+    return this.newBooking.startAt &&
+      this.newBooking.endAt &&
+      this.newBooking.guests &&
+      this.newBooking.guests > 0;
   }
 
   reservePlace() {
