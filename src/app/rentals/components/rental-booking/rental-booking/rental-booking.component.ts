@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Moment } from 'moment';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 import { Booking } from 'src/app/booking/shared/booking.model';
 import { Rental } from 'src/app/rentals/shared/rental.model';
@@ -19,7 +20,9 @@ export class RentalBookingComponent implements OnInit {
   };
   newBooking: Booking;
   
-  constructor() { }
+  constructor(
+    public ngxSmartModalService: NgxSmartModalService,
+  ) { }
 
   ngOnInit() {
     this.initBooking();
@@ -43,6 +46,10 @@ export class RentalBookingComponent implements OnInit {
     this.newBooking.endAt = endDate.format();
     this.newBooking.nights = endDate.diff(startDate, 'days');
     this.newBooking.price = this.newBooking.nights * this.rental.dailyPrice;
+  }
+
+  confirmModal() {
+    this.ngxSmartModalService.getModal('confirmationModal').open();
   }
 
   get canReserve() {

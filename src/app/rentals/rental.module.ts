@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MapModule } from '../shared/modules/map/map.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import { RentalListingComponent } from './rental-listing/rental-listing.component';
@@ -55,6 +56,7 @@ const routes: Routes = [
     MapModule,
     FormsModule,
     NgxDaterangepickerMd.forRoot(),
+    NgxSmartModalModule.forChild(),
   ]
 })
 export class RentalModule {}
