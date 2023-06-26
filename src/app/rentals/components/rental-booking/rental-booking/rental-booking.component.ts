@@ -54,6 +54,10 @@ export class RentalBookingComponent implements OnInit {
     this.ngxSmartModalService.getModal('confirmationModal').open();
   }
 
+  dateValid = (date: Moment):boolean => {
+    return this.timeService.datePast(date);
+  }
+
   get canReserve() {
     return this.newBooking.startAt &&
       this.newBooking.endAt &&

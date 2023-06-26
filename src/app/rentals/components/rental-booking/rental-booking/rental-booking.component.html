@@ -10,6 +10,7 @@
         type="text"
         ngxDaterangepickerMd
         name="dataRange"
+        [isInvalidDate]="dateValid"
         [locale]="locale"
         [(ngModel)]="calendar"
         (datesUpdated)="updateBookingDates($event)"
