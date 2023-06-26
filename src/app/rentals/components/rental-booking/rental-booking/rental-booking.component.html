@@ -48,7 +48,9 @@
 
 <ngx-smart-modal #confirmationModal identifier="confirmationModal">
   <div class="modal-header">
-    <h4 class="modal-title">Confirm Booking <p>{{newBooking.startAt}} to {{newBooking.endAt}}</p></h4>
+    <h4 class="modal-title">Confirm Booking
+      <p>{{timeService.formatDate(newBooking.startAt)}} to {{timeService.formatDate(newBooking.endAt)}}</p>
+    </h4>
     <button
       type="button"
       class="close"

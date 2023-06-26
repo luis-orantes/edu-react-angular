@@ -4,6 +4,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 
 import { Booking } from 'src/app/booking/shared/booking.model';
 import { Rental } from 'src/app/rentals/shared/rental.model';
+import { TimeService } from 'src/app/shared/services/time.service';
 
 @Component({
   selector: 'bwm-rental-booking',
@@ -22,6 +23,7 @@ export class RentalBookingComponent implements OnInit {
   
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
+    public timeService: TimeService,
   ) { }
 
   ngOnInit() {
